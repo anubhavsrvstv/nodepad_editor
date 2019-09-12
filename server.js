@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
 
-const port = '6003';
+const  port = process.env.PORT||6003;
 
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 app.use(bodyParser.json({ limit: '1024mb' }));
