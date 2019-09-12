@@ -1,0 +1,63 @@
+<style>
+    body, html {
+    height: 100%;
+    font-family: Montserrat-Regular, sans-serif;
+    background-color: lightgrey
+}
+    table,
+    th,
+    td {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    .container{
+        background-color: gray; 
+    }
+    button{
+        background-color: aqua;
+    }
+    .validate-input {
+    position: relative;
+    border: solid;
+}
+</style>
+<div ng-controller="appCtrl" ng-init="getNotes()">
+
+    <div class="container-contact1">
+            <span class="contact1-form-title">NOTEPAD</span>
+            <br>
+        <textarea class="wrap-input1 validate-input" type="text" ng-model="notes" placeholder="Write Here"></textarea>
+        <button class="contact1-form-btn" type="submit" ng-click="saveData(notes);">Save</button>
+
+    </div>
+<br>
+<br>
+    <div class="container-contact1">
+        <table>
+			<tr ng-repeat="value in data">
+				<td>{{ $index + 1 }}</td>
+				<td >
+					<span ng-if="!value.$edit">{{value.myNotes}}</span>
+					<span ng-if="value.$edit" ><input  type="text" ng-model="value.myNotes"></span>
+				</td>
+
+				<td><button  class="contact1-form-btn" ng-if="!value.$edit" ng-click="value.$edit=true">update</button>
+				<button class="contact1-form-btn"  ng-if="value.$edit" ng-click="dataUpdate(value._id,value.myNotes);value.$edit=false">click</button></td>
+				<td><button class="contact1-form-btn btn-xs"  ng-click='removeData(value._id)'>delete</button></td>
+
+			</tr>
+
+
+			</tr>
+		</table>
+    </div>
+</div>
